@@ -1,0 +1,114 @@
+<button class="btn btn-primary" (click)="wizOpen = true">
+  Begin
+</button>
+
+<div class="card">
+  <div class="card-header">Summary</div>
+  <div class="card-block">
+    <div class="card-title">Block</div>
+    <div class="card-text">Stuff</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">Your Budget</div>
+  <div class="card-block">
+    <div class="card-title">Block</div>
+    <div class="card-text">Stuff</div>
+  </div>
+</div>
+
+<clr-wizard #wizard [(clrWizardOpen)]="wizOpen" clrWizardSize="lg">
+    <clr-wizard-title>Paycheck Information</clr-wizard-title>
+
+    <clr-wizard-button [type]="'cancel'">Cancel</clr-wizard-button>
+    <clr-wizard-button [type]="'previous'">Back</clr-wizard-button>
+    <clr-wizard-button [type]="'next'">Next</clr-wizard-button>
+    <clr-wizard-button [type]="'finish'">Finish</clr-wizard-button>
+
+    <clr-wizard-page>
+      <ng-template clrPageTitle>Pay per period</ng-template>
+
+      <form clrForm>
+        <clr-radio-container>
+          <label>Frequency</label>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio value="biweekly" name="frequency" [(ngModel)]="frequency" />
+            <label>Bi-weekly</label>
+          </clr-radio-wrapper>
+          <clr-radio-wrapper>
+            <input type="radio" clrRadio value="monthly" name="frequency" [(ngModel)]="frequency" />
+            <label>Monthly</label>
+          </clr-radio-wrapper>
+        </clr-radio-container>
+
+        <clr-input-container class="input-currency">
+          <label>Net pay</label>
+          <input clrInput type="number" min="0" name="payNet" [(ngModel)]="payNet" />
+        </clr-input-container>
+
+        <clr-input-container class="input-currency">
+          <label>Gross pay</label>
+          <input clrInput type="number" min="0" name="payGross" [(ngModel)]="payGross" />
+        </clr-input-container>
+
+        <clr-toggle-container>
+          <clr-toggle-wrapper>
+            <input type="checkbox" clrToggle name="salaried" [value]="false" [(ngModel)]="salaried" />
+            <label>Salaried</label>
+          </clr-toggle-wrapper>
+        </clr-toggle-container>
+
+        <clr-input-container *ngIf="!salaried">
+          <label>Hours</label>
+          <input clrInput type="number" min="0" name="hours" [(ngModel)]="hours" />
+        </clr-input-container>
+
+        <clr-input-container *ngIf="!salaried">
+          <label>Expected hours</label>
+          <input clrInput type="number" min="0" name="hoursExpected" [(ngModel)]="hoursExpected" />
+        </clr-input-container>
+      </form>
+    </clr-wizard-page>
+
+    <clr-wizard-page>
+        <ng-template clrPageTitle>Tax witholdings</ng-template>
+
+        <form clrForm>
+          <clr-input-container class="input-currency">
+            <label>Federal W/H(S/2)</label>
+            <input clrInput type="number" min="0" name="federalWH" [(ngModel)]="federalWH" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>Medicare</label>
+            <input clrInput type="number" min="0" name="medicare" [(ngModel)]="medicare" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>Social Security</label>
+            <input clrInput type="number" min="0" name="social" [(ngModel)]="social" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>State</label>
+            <input clrInput type="number" min="0" name="state" [(ngModel)]="state" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>Federal</label>
+            <input clrInput type="number" min="0" name="federal" [(ngModel)]="federal" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>State</label>
+            <input clrInput type="number" min="0" name="state" [(ngModel)]="state" />
+          </clr-input-container>
+
+          <clr-input-container class="input-currency">
+            <label>City</label>
+            <input clrInput type="number" min="0" name="city" [(ngModel)]="city" />
+          </clr-input-container>
+        </form>
+    </clr-wizard-page>
+</clr-wizard>
