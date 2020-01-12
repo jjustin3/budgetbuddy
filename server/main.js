@@ -5,6 +5,7 @@ const path = require('path');
 require('dotenv').config();
 
 const apiRouter = require('./routes/api');
+console.log(process.env.PORT);
 const port = Number(process.env.PORT);
 const app = express();
 const server = require('http').Server(app);
